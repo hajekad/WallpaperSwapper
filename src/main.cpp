@@ -11,11 +11,13 @@ signed main(void) {
         wallpaperController.getNewWallpaper();
         wallpaperController.setNewWallpaper();
     } catch (const IsRelevantException & exceptRelevant) {
-        std::cerr << "Exception: Image is still relevant" << std::endl;
+        std::cerr << "Exception: " << exceptRelevant.what() << std::endl;
     } catch (const NetworkException & exceptNetwork) {
         std::cerr << "Exception: " << exceptNetwork.what() << std::endl;
     } catch (const SystemException & exceptSystem) {
         std::cerr << "Exception: " << exceptSystem.what() << std::endl;
+    } catch (...) {
+        return EXIT_FAILURE;
     } 
 
     return EXIT_SUCCESS;

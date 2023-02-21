@@ -26,4 +26,4 @@ $(OUTPUT): $(OBJECTS)
 
 # Rule to clean up all object files and the final output
 clean:
-	rm -f $(OBJDIR)/*.o $(OUTPUT)
+	rm -rf $(OBJDIR)/*.o $(OUTPUT)
