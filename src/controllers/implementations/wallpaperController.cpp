@@ -17,8 +17,6 @@ void WallpaperController::checkRelevance() {
         const auto downloadTime = std::chrono::system_clock::to_time_t(systemTime);
 
         sameDay(now, downloadTime);
-    } else {
-        throw IsRelevantException("File not found.");
     }
 }
 
