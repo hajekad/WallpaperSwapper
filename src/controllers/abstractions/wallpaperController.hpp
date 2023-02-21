@@ -9,11 +9,12 @@
 #include "../../interface/exceptions/SystemException.cpp"
 
 #define SOURCE_PATH "assets/current.jpg"
+#define TWELVE_HOURS_IN_SECONDS 43200
 
 namespace fs = std::filesystem;
 
 class WallpaperController {
-    bool exists(const fs::path & p, fs::file_status s = fs::file_status{});
+    void sameDay(const long & now, const long & downloadDate);
 public:
     void checkRelevance();
     void getNewWallpaper();
