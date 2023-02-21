@@ -1,45 +1,29 @@
-PROG		:= WaSp
+# Define the compiler and its flags
+CXX = g++
+CXXFLAGS = -std=c++23 -Wall --pedantic
 
-CXX 		:= g++
+# Define the directory where the source files are located
+SRCDIR = src
 
-LD_FLAGS 	:= -Wall --pedantic -std=c++23
-CXX_FLAGS	:= $(LD_FLAGS) -c
+# Define the directory where the object files will be created
+OBJDIR = obj
 
-OUT			:= err
+# Define the name of the final output
+OUTPUT = WaSp
 
-OBJS 		:= main.o wallpaperController.o *Exception.o
- 
-output: $(OBJS)
-	$(CXX) $(LD_FLAGS) -o $(PROG) $(OBJS)
+# Find all source files in subdirectories and create a list of corresponding object files
+SOURCES = $(shell find $(SRCDIR) -type f -name "*.cpp")
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
 
-%.o: src/*/%.cpp
-	$(CXX) $(CXX_FLAGS) $<
+# Rule to compile all .cpp files to .o files
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-doc: doc src/*.hpp
-	doxygen Doxyfile
+# Rule to link all object files to create the final output
+$(OUTPUT): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-run: $(PROG)
-	./$(PROG)
-
-compile:
-	make -j 8
-
-all:
-	compile
-	doc
-
-opendoc: doc
-	firefox doc/index.html
-
-count:
-	wc -l src/.cpp
-	wc -l src/.hpp
-
-valgrind: compile
-	valgrind -s --leak-check=full --track-origins=yes ./$(PROG) 2> $(OUT)
-
+# Rule to clean up all object files and the final output
 clean:
-	rm -f *.o $(PROG)
-	rm -f err
-	rm -rf doc
-	rm -rf .vscode
+	rm -f $(OBJDIR)/*.o $(OUTPUT)

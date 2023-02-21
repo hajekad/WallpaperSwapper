@@ -2,9 +2,6 @@
 #include <iostream>
 
 #include "controllers/abstractions/wallpaperController.hpp"
-#include "interface/exceptions/IsRelevantException.cpp"
-#include "interface/exceptions/NetworkException.cpp"
-#include "interface/exceptions/SystemException.cpp"
 
 signed main(void) {
     WallpaperController wallpaperController;
@@ -13,11 +10,11 @@ signed main(void) {
         wallpaperController.checkRelevance();
         wallpaperController.getNewWallpaper();
         wallpaperController.setNewWallpaper();
-    } catch (IsRelevantException exceptRelevant) {
+    } catch (const IsRelevantException & exceptRelevant) {
         std::cerr << "Exception: Image is still relevant" << std::endl;
-    } catch (NetworkException exceptNetwork) {
+    } catch (const NetworkException & exceptNetwork) {
         std::cerr << "Exception: " << exceptNetwork.what() << std::endl;
-    } catch (SystemException exceptSystem) {
+    } catch (const SystemException & exceptSystem) {
         std::cerr << "Exception: " << exceptSystem.what() << std::endl;
     } 
 
