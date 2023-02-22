@@ -22,7 +22,7 @@ void WallpaperController::checkRelevance() {
 
 
 void WallpaperController::getNewWallpaper() {
-    throw NetworkException("idk");
+    CurlRestService curlRestService;
 }
 
 
