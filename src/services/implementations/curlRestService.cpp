@@ -15,6 +15,8 @@ void CurlRestService::getNewWallpaperUrl() {
     
     CURLcode res = curl_easy_perform(curl);
 
+    std::cout << std::endl << res << std::endl;
+
     if(res != CURLE_OK) {
         throw NetworkException(curl_easy_strerror(res));
     }
