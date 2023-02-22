@@ -40,3 +40,4 @@ $(OUTPUT): $(OBJECTS)
 clean:
 	rm -rf $(OBJDIR)/*.o $(OUTPUT)
 	rm -rf curl
+	rm assets/*.jpg

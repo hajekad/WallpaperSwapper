@@ -4,8 +4,9 @@ CurlRestService::CurlRestService() {
     curl = curl_easy_init();
     curl_global_init(CURL_GLOBAL_ALL);
     hdUrl = "";
-    dataSize = 0;
 }
+
+size_t dataSize = 0;
 
 size_t curlWriteFunction(void* ptr, size_t size, size_t nmemb, void* userdata) {
     char** stringToWrite=(char**)userdata;
@@ -43,6 +44,31 @@ void CurlRestService::getNewWallpaperUrl() {
     hdUrl = data;
 
     clearHdUrl();
+}
+
+void CurlRestService::getNewWallpaperImage() {
+    dataSize = 0;
+    CURL * curl = curl_easy_init();
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    if(!curl) {
+        throw NetworkException("Could not instantiate curl service.");
+    }
+    char * data = NULL;
+
+    curl_easy_setopt(curl, CURLOPT_URL, hdUrl);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &curlWriteFunction);
+
+    CURLcode res = curl_easy_perform(curl);
+
+    std::ofstream of("assets/current.jpg", std::ios::binary);
+
+    if(res != CURLE_OK) {
+        throw NetworkException(curl_easy_strerror(res));
+    }
+
+    of << data;
 }
 
 void CurlRestService::clearHdUrl() {

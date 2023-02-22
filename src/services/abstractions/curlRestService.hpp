@@ -4,10 +4,9 @@
 #include <string>
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 #include "../../interface/exceptions/NetworkException.cpp"
-
-size_t dataSize = 0;
 
 class CurlRestService
 {
@@ -15,12 +14,11 @@ class CurlRestService
     CURLcode res;
     std::string hdUrl;
 
+    void clearHdUrl();
 public:
     CurlRestService();
-
-    void getInfo();
     
     void getNewWallpaperUrl();
 
-    void clearHdUrl();
+    void getNewWallpaperImage();
 };

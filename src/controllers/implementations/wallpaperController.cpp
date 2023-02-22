@@ -26,6 +26,7 @@ void WallpaperController::getNewWallpaper() {
     
     try {
         curlRestService.getNewWallpaperUrl();
+        curlRestService.getNewWallpaperImage();
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
     }

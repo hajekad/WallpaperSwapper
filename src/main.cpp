@@ -7,7 +7,7 @@ signed main(void) {
     WallpaperController wallpaperController;
 
     try {
-        //wallpaperController.checkRelevance();
+        wallpaperController.checkRelevance();
         wallpaperController.getNewWallpaper();
         wallpaperController.setNewWallpaper();
     } catch (const IsRelevantException & exceptRelevant) {
