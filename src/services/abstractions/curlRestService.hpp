@@ -21,4 +21,6 @@ public:
     void getInfo();
     
     void getNewWallpaperUrl();
+
+    void clearHdUrl();
 };

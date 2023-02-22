@@ -34,13 +34,46 @@ void CurlRestService::getNewWallpaperUrl() {
 
     CURLcode res = curl_easy_perform(curl);
 
-    std::cout << std::endl << res << std::endl;
-
     if(res != CURLE_OK) {
         throw NetworkException(curl_easy_strerror(res));
     }
 
     curl_easy_cleanup(curl);
 
-    std::cout << data << std::endl;
+    hdUrl = data;
+
+    clearHdUrl();
+}
+
+void CurlRestService::clearHdUrl() {
+    const std::string templ = "\"hdurl\":\"";
+    size_t i = 0;
+    size_t j = 0;
+    
+    for(; i < hdUrl.size(); i++) {
+        if(hdUrl[i] == templ[j]) {
+            j++;
+            if(j == templ.size()) {
+                break;
+            }
+        } else {
+            j = 0;
+        }
+    }
+
+    if(i == hdUrl.size()) {
+        throw NetworkException("url is missing in the response json.");
+    }
+
+    i++;
+
+    std::string tmp = "";
+
+    while(hdUrl[i] != '"') {
+        tmp += hdUrl[i];
+        i++;
+    }
+
+    hdUrl = tmp;
+    std::cout << hdUrl << std::endl;    
 }
