@@ -7,7 +7,6 @@
 #include "../../services/abstractions/curlRestService.hpp"
 
 #include "../../interface/exceptions/IsRelevantException.cpp"
-#include "../../interface/exceptions/NetworkException.cpp"
 #include "../../interface/exceptions/SystemException.cpp"
 
 #define SOURCE_PATH "assets/current.jpg"
