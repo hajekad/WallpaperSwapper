@@ -11,8 +11,6 @@ class CurlRestService
     CURLcode res;
     std::string hdUrl;
 
-    size_t writeCallback(void * ptr, size_t size, size_t nmemb, void * userdata);
-
 public:
     CurlRestService();
     
