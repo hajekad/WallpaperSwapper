@@ -87,16 +87,20 @@ void ImageManipulationService::setWHRatio() {
 }
 
 void ImageManipulationService::expandImage() {
-    int heightT = 1080;
-    int widthT = 1920;
+    int newWidth = (height / 9) * 16;
+    int startAt = (newWidth - width) / 2;
+    int iteratorOriginal = 55;
     
-    Image image(widthT, heightT);
+    Image image(newWidth, height);
     
-    for(int y = 0; y < heightT; y++) {
-        for(int x = 0; x < widthT; x++) {
-            // image.setColor(Color(x / width, 1 - (x / width), y / height), x, y);
-            image.setColor(Color(rand() % 256, rand() % 256, rand() % 256), x, y);
-
+    for(int y = 0; y < image.height; y++) {
+        for(int x = startAt; x < width + startAt; x++) {
+            // copy original
+            iteratorOriginal++;
+            
+            iteratorOriginal++;
+            
+            iteratorOriginal++;
         }
     }
 

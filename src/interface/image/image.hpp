@@ -13,13 +13,12 @@ struct Color
     ~Color();
 };
 
-class Image
+struct Image
 {
     int width;
     int height;
     std::vector<Color> colors;
 
-public:
     Image(int width, int height);
     ~Image();
 

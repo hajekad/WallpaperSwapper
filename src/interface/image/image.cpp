@@ -115,7 +115,7 @@ void Image::save(const char * path) const {
         for(int x = 0; x < width; x++) {
             auto currColor = getColor(x, y);
 
-            unsigned char tmp[] = {currColor.r, currColor.g, currColor.b};
+            unsigned char tmp[] = {currColor.b, currColor.g, currColor.r};
             os.write(reinterpret_cast<char *>(tmp), 3);
         }
         os.write(reinterpret_cast<char *>(bmpPad), paddingAmount);

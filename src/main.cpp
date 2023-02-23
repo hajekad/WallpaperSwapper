@@ -9,7 +9,7 @@ signed main(void) {
     try {
         wallpaperController.checkRelevance();
         wallpaperController.getNewWallpaper();
-        // wallpaperController.cropAndCombine();
+        wallpaperController.cropAndCombine();
         wallpaperController.setNewWallpaper();
     } catch (const IsRelevantException & exceptRelevant) {
         std::cerr << "Exception: " << exceptRelevant.what() << std::endl;
