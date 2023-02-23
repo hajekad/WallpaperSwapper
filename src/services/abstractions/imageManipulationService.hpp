@@ -17,4 +17,6 @@ public:
     ImageManipulationService(const std::string & sourcePath);
 
     void setWHRatio();
+
+    void expandImage();
 };

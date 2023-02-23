@@ -85,3 +85,17 @@ void ImageManipulationService::setWHRatio() {
         throw SystemException("Error scanning file.");
     }
 }
+
+void ImageManipulationService::expandImage() {
+    std::ifstream is(sourcePath);
+    std::ofstream os("assets/widened.jpg");
+
+    int newWidth = (height / 9) * 16;
+    int toAdd = (newWidth - width) / 2;
+
+    for(int i = 0; i < height; i++) {
+        for(int j = 0; j < toAdd; j++) {
+            os << 0 << 0 << 0;        
+        }
+    }
+}

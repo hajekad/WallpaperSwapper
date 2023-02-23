@@ -33,6 +33,7 @@ void WallpaperController::cropAndCombine() {
     ImageManipulationService service(SOURCE_PATH);
     
     service.setWHRatio();
+    service.expandImage();
 }
 
 void WallpaperController::setNewWallpaper() {
