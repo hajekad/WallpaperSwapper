@@ -29,6 +29,11 @@ void WallpaperController::getNewWallpaper() {
     curlRestService.getNewWallpaperImage();
 }
 
+void WallpaperController::cropAndCombine() {
+    ImageManipulationService service(SOURCE_PATH);
+    
+    service.setWHRatio();
+}
 
 void WallpaperController::setNewWallpaper() {
     std::filesystem::create_directory(destinationDirectory);

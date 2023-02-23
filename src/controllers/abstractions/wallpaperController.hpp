@@ -6,10 +6,11 @@
 #include <fstream>
 
 #include "../../services/abstractions/curlRestService.hpp"
+#include "../../services/abstractions/imageManipulationService.hpp"
+
 
 #include "../../../config.hpp"
 #include "../../interface/exceptions/IsRelevantException.cpp"
-#include "../../interface/exceptions/SystemException.cpp"
 
 #define SOURCE_PATH "assets/current.jpg"
 #define TWELVE_HOURS_IN_SECONDS 43200
@@ -24,6 +25,8 @@ public:
     void checkRelevance();
 
     void getNewWallpaper();
+
+    void cropAndCombine();
 
     void setNewWallpaper();
 };
