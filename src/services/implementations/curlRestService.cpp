@@ -4,6 +4,7 @@ CurlRestService::CurlRestService() {
     curl = curl_easy_init();
     curl_global_init(CURL_GLOBAL_ALL);
     hdUrl = "";
+    urlType = URL_TYPE;
 }
 
 size_t dataSize = 0;
@@ -78,7 +79,7 @@ void CurlRestService::getNewWallpaperImage() {
 }
 
 void CurlRestService::clearHdUrl() {
-    std::string templ = "\"" + URL_TYPE + "\":\"";
+    std::string templ = "\"" + urlType + "\":\"";
     size_t i = 0;
     size_t j = 0;
     
