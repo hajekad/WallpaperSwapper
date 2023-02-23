@@ -4,6 +4,7 @@
 #include <iostream>
 #include <filesystem>
 
+#include "../../interface/image/image.hpp"
 #include "../../interface/exceptions/SystemException.cpp"
 
 class ImageManipulationService

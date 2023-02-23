@@ -28,9 +28,7 @@ Color Image::getColor(int x, int y) const {
 }
 
 void Image::setColor(const Color & color, int x, int y) {
-    colors[y * width + x].r = color.r;
-    colors[y * width + x].g = color.g;
-    colors[y * width + x].b = color.b;
+    colors[y * width + x] = color;
 }
 
 void Image::save(const char * path) const {
@@ -124,6 +122,4 @@ void Image::save(const char * path) const {
     }
 
     os.close();
-
-    std::cout << "created" << std::endl;
 }

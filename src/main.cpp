@@ -7,10 +7,10 @@ signed main(void) {
     WallpaperController wallpaperController;
 
     try {
-        // wallpaperController.checkRelevance();
-        // wallpaperController.getNewWallpaper();
-        wallpaperController.cropAndCombine();
-        // wallpaperController.setNewWallpaper();
+        wallpaperController.checkRelevance();
+        wallpaperController.getNewWallpaper();
+        // wallpaperController.cropAndCombine();
+        wallpaperController.setNewWallpaper();
     } catch (const IsRelevantException & exceptRelevant) {
         std::cerr << "Exception: " << exceptRelevant.what() << std::endl;
     } catch (const NetworkException & exceptNetwork) {

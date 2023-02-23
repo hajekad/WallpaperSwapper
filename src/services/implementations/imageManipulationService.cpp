@@ -87,15 +87,18 @@ void ImageManipulationService::setWHRatio() {
 }
 
 void ImageManipulationService::expandImage() {
-    std::ifstream is(sourcePath);
-    std::ofstream os("assets/widened.jpg");
+    int heightT = 1080;
+    int widthT = 1920;
+    
+    Image image(widthT, heightT);
+    
+    for(int y = 0; y < heightT; y++) {
+        for(int x = 0; x < widthT; x++) {
+            // image.setColor(Color(x / width, 1 - (x / width), y / height), x, y);
+            image.setColor(Color(rand() % 256, rand() % 256, rand() % 256), x, y);
 
-    int newWidth = (height / 9) * 16;
-    int toAdd = (newWidth - width) / 2;
-
-    for(int i = 0; i < height; i++) {
-        for(int j = 0; j < toAdd; j++) {
-            os << 0 << 0 << 0;        
         }
     }
+
+    image.save("assets/random.jpg");
 }
