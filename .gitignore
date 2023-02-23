@@ -1,3 +1,12 @@
+# IDE
+.vscode
+
+# Project
+obj/
+vgcore*
+test*
+WaSp
+
 # Prerequisites
 *.d
 
