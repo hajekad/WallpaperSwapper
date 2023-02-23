@@ -27,7 +27,7 @@ void WallpaperController::getNewWallpaper() {
     try {
         curlRestService.getNewWallpaperUrl();
         curlRestService.getNewWallpaperImage();
-    } catch(const std::exception& e) {
+    } catch(const std::exception & e) {
         std::cerr << e.what() << '\n';
     }
     
@@ -35,5 +35,7 @@ void WallpaperController::getNewWallpaper() {
 
 
 void WallpaperController::setNewWallpaper() {
-    throw SystemException("lol");
+    std::filesystem::create_directory(destinationDirectory);
+
+    std::filesystem::copy_file("assets/current.jpg", destinationDirectory + "/current.jpg");
 }

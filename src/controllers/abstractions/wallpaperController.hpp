@@ -3,9 +3,11 @@
 #include <filesystem>
 #include <chrono>
 #include <iostream>
+#include <fstream>
 
 #include "../../services/abstractions/curlRestService.hpp"
 
+#include "../../../config.hpp"
 #include "../../interface/exceptions/IsRelevantException.cpp"
 #include "../../interface/exceptions/SystemException.cpp"
 
@@ -15,9 +17,13 @@
 namespace fs = std::filesystem;
 
 class WallpaperController {
+    std::string destinationDirectory = DESTINATION_DIRECTORY;
+
     void sameDay(const long & now, const long & downloadDate);
 public:
     void checkRelevance();
+
     void getNewWallpaper();
+
     void setNewWallpaper();
 };
