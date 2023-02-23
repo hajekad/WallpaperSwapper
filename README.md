@@ -8,4 +8,4 @@
     - profit!!!
 
 ## TO-DO list
-    - add dexroption part provided by nasa api to the colums that should exist when the picture is not in 16:9 ratio 
+    - add description part provided by nasa api to the colums that should exist when the picture is not in 16:9 ratio 
