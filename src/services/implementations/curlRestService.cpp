@@ -73,9 +73,7 @@ void CurlRestService::getNewWallpaperImage() {
     CURLcode res = curl_easy_perform(curl);
 
     if(res != CURLE_OK) {
-        std::string errorMessage = curl_easy_strerror(res);
-        errorMessage += " at address: \"" + hdUrl + "\"";
-        throw NetworkException(errorMessage);
+        throw NetworkException(curl_easy_strerror(res));
     }
 }
 
