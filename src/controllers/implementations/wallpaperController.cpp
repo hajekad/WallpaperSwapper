@@ -24,13 +24,9 @@ void WallpaperController::checkRelevance() {
 void WallpaperController::getNewWallpaper() {
     CurlRestService curlRestService;
     
-    try {
-        curlRestService.getNewWallpaperUrl();
-        curlRestService.getNewWallpaperImage();
-    } catch(const std::exception & e) {
-        std::cerr << e.what() << '\n';
-    }
+    curlRestService.getNewWallpaperUrl();
     
+    curlRestService.getNewWallpaperImage();
 }
 
 
