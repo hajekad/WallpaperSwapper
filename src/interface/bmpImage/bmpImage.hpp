@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
 
 struct Color
 {
@@ -13,14 +15,15 @@ struct Color
     ~Color();
 };
 
-struct Image
+struct BmpImage
 {
     int width;
     int height;
     std::vector<Color> colors;
 
-    Image(int width, int height);
-    ~Image();
+    BmpImage(const char * path);
+    BmpImage(int width, int height);
+    ~BmpImage();
 
     Color getColor(int x, int y) const;
     void setColor(const Color & color, int x, int y);

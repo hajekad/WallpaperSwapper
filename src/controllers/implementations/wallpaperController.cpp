@@ -39,5 +39,8 @@ void WallpaperController::cropAndCombine() {
 void WallpaperController::setNewWallpaper() {
     std::filesystem::create_directory(destinationDirectory);
 
-    std::filesystem::copy_file("assets/current.jpg", destinationDirectory + "/current.jpg");
+    try {
+        std::filesystem::copy_file("assets/current.jpg", destinationDirectory + "/current.jpg"); 
+    }
+    catch(const std::exception& e) {}    
 }

@@ -1,4 +1,4 @@
-#include "image.hpp"
+#include "bmpImage.hpp"
 
 Color::Color()
     : r(0), g(0), b(0) {
@@ -14,29 +14,79 @@ Color::~Color() {
 
 }
 
-Image::Image(int width, int height)
-    : width(width), height(height), colors(std::vector<Color>(width * height)) {
+BmpImage::BmpImage(const char * path) {
+    std::ifstream is;
+    is.open(path, std::ios::out | std::ios::binary);
+    
+    if(!is.is_open()) {
+        throw std::runtime_error("Could not open file.");
+    }
+
+    const int fileHeaderSize = 14;
+    const int informationHeaderSize = 40;
+
+    unsigned char fileHeader[fileHeaderSize];
+    is.read(reinterpret_cast<char *>(fileHeader), fileHeaderSize);
+
+    if(fileHeader[0] != 66 || fileHeader[1] != 77) {
+        is.close();
+        std::string err = "File is not in .bmp format! ";
+        err += fileHeader[0];
+        err += fileHeader[1];
+        throw std::runtime_error(err.c_str());
+    }
+
+    unsigned char informationHeader[informationHeaderSize];
+    is.read(reinterpret_cast<char *>(informationHeader), informationHeaderSize);
+
+    // int fileSize = fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) + (fileHeader[5] << 24);
+    width = informationHeader[4] + (informationHeader[5] << 8) + (informationHeader[6] << 16) + (informationHeader[7] << 24);
+    height = informationHeader[8] + (informationHeader[9] << 8) + (informationHeader[10] << 16) + (informationHeader[11] << 24);
+
+    colors.resize(width * height);
+    
+    const int paddingAmount = (4 - (width * 3) % 4) % 4;
+
+    for(int y = 0; y < height; y++) {
+        for(int x = 0; x < width; x++) {
+            unsigned char color[3];
+            is.read(reinterpret_cast<char *>(color), 3);
+
+            colors[y * width * x].r = color[2];
+            colors[y * width * x].g = color[1];
+            colors[y * width * x].b = color[0];
+        }
+        is.ignore(paddingAmount);
+    }
+
+    is.close();
+
+    std::cout << "File read!" << std::endl;
+}
+
+BmpImage::BmpImage(int width, int height)
+    : width(width), height(height), colors(std::vector<Color>(width * height))
+{
+}
+
+BmpImage::~BmpImage() {
 
 }
 
-Image::~Image() {
-
-}
-
-Color Image::getColor(int x, int y) const {
+Color BmpImage::getColor(int x, int y) const {
     return colors[y * width + x];
 }
 
-void Image::setColor(const Color & color, int x, int y) {
+void BmpImage::setColor(const Color & color, int x, int y) {
     colors[y * width + x] = color;
 }
 
-void Image::save(const char * path) const {
+void BmpImage::save(const char * path) const {
     std::ofstream os;
     os.open(path, std::ios::out | std::ios::binary);
 
     if(!os.is_open()) {
-        throw std::runtime_error("Could not open file.");
+        throw std::runtime_error("Could not create file.");
         return;
     }
 

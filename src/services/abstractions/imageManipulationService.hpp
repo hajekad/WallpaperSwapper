@@ -3,8 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <cstring>
 
-#include "../../interface/image/image.hpp"
+#include "../../interface/bmpImage/bmpImage.hpp"
 #include "../../interface/exceptions/SystemException.cpp"
 
 class ImageManipulationService

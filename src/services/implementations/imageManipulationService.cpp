@@ -87,22 +87,12 @@ void ImageManipulationService::setWHRatio() {
 }
 
 void ImageManipulationService::expandImage() {
-    int newWidth = (height / 9) * 16;
-    int startAt = (newWidth - width) / 2;
-    int iteratorOriginal = 55;
+    // int newWidth = (height / 9) * 16;
+    // int startAt = (newWidth - width) / 2;
     
-    Image image(newWidth, height);
-    
-    for(int y = 0; y < image.height; y++) {
-        for(int x = startAt; x < width + startAt; x++) {
-            // copy original
-            iteratorOriginal++;
-            
-            iteratorOriginal++;
-            
-            iteratorOriginal++;
-        }
-    }
+    // BmpImage image(newWidth, height);
+    // image.save("assets/random.jpg");
 
-    image.save("assets/random.jpg");
+    // Image source(sourcePath.c_str());
+    // source.save("assets/testSave.jpg");
 }
