@@ -40,6 +40,11 @@ void WallpaperController::setNewWallpaper() {
     std::filesystem::create_directory(destinationDirectory);
 
     try {
+        std::filesystem::remove(destinationDirectory + "/current.jpg"); 
+    }
+    catch(const std::exception& e) {}
+
+    try {
         std::filesystem::copy_file("assets/current.jpg", destinationDirectory + "/current.jpg"); 
     }
     catch(const std::exception& e) {}    

@@ -87,12 +87,13 @@ void ImageManipulationService::setWHRatio() {
 }
 
 void ImageManipulationService::expandImage() {
-    // int newWidth = (height / 9) * 16;
+    int newWidth = (height / 9) * 16;
     // int startAt = (newWidth - width) / 2;
+     
+    BmpImage image(newWidth, height);
     
-    // BmpImage image(newWidth, height);
-    // image.save("assets/random.jpg");
+    std::string prompt = "mogrify -format bmp ";
+    prompt += sourcePath;
 
-    // Image source(sourcePath.c_str());
-    // source.save("assets/testSave.jpg");
+    std::system(prompt.c_str());
 }
