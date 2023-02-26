@@ -30,9 +30,7 @@ BmpImage::BmpImage(const char * path) {
 
     if(fileHeader[0] != 66 || fileHeader[1] != 77) {
         is.close();
-        std::string err = "File is not in .bmp format! ";
-        err += fileHeader[0];
-        err += fileHeader[1];
+        std::string err = "File is not in .bmp format!";
         throw std::runtime_error(err.c_str());
     }
 
@@ -46,22 +44,20 @@ BmpImage::BmpImage(const char * path) {
     colors.resize(width * height);
     
     const int paddingAmount = (4 - (width * 3) % 4) % 4;
-
+    
     for(int y = 0; y < height; y++) {
-        for(int x = 0; x < width; x++) {
+        for(int x = 0; x < width; x++) {            
             unsigned char color[3];
             is.read(reinterpret_cast<char *>(color), 3);
-
-            colors[y * width * x].r = color[2];
-            colors[y * width * x].g = color[1];
-            colors[y * width * x].b = color[0];
+                        
+            colors[y * width + x].r = color[2];
+            colors[y * width + x].g = color[1];
+            colors[y * width + x].b = color[0];
         }
         is.ignore(paddingAmount);
     }
 
     is.close();
-
-    std::cout << "File read!" << std::endl;
 }
 
 BmpImage::BmpImage(int width, int height)

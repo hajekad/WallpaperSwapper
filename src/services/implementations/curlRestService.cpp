@@ -76,6 +76,8 @@ void CurlRestService::getNewWallpaperImage() {
     if(res != CURLE_OK) {
         throw NetworkException(curl_easy_strerror(res));
     }
+
+    fclose(targetFile);
 }
 
 void CurlRestService::clearHdUrl() {

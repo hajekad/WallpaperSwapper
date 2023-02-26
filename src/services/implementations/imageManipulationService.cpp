@@ -84,16 +84,27 @@ void ImageManipulationService::setWHRatio() {
     if(!scanhead(fin, width, height)) {
         throw SystemException("Error scanning file.");
     }
+
+    fin.close();
 }
 
 void ImageManipulationService::expandImage() {
     int newWidth = (height / 9) * 16;
-    // int startAt = (newWidth - width) / 2;
+    int startAt =  (newWidth - width) / 2;
      
-    BmpImage image(newWidth, height);
+    BmpImage newImage(newWidth, height);
     
-    std::string prompt = "mogrify -format bmp ";
-    prompt += sourcePath;
+    std::string prompt = "mogrify -format bmp assets/current.jpg";
 
     std::system(prompt.c_str());
+    BmpImage source("assets/current.bmp");
+
+    for(int y = 0; y < height; y++) {
+        for(int x = 0; x < width; x++) {
+            Color currCol = source.getColor(x, y);
+            newImage.setColor(currCol, x + startAt, y);
+        }
+    }
+
+    newImage.save("assets/new.bmp");
 }
