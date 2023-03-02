@@ -5,7 +5,7 @@
  * set this to your preffered directory which you will be using for managing wallpapers
  * 
  */
-#define DESTINATION_DIRECTORY "/home/hajekad/.config/awesome/themes/powerarrow-dark/WaSp"
+#define DESTINATION_DIRECTORY "/home/hajekad/.config/awesome/themes/powerarrow-dark/WaSpFolder"
 
 /**
  * @brief quality selection

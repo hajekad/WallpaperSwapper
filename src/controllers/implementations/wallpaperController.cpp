@@ -32,7 +32,6 @@ void WallpaperController::getNewWallpaper() {
 void WallpaperController::cropAndCombine() {
     ImageManipulationService service(SOURCE_PATH);
     
-    service.setWHRatio();
     service.expandImage();
 }
 
@@ -45,7 +44,7 @@ void WallpaperController::setNewWallpaper() {
     catch(const std::exception& e) {}
 
     try {
-        std::filesystem::copy_file("assets/new.bmp", destinationDirectory + "/current.jpg"); 
+        std::filesystem::copy_file("assets/new.bmp", destinationDirectory + "/current.bmp"); 
     }
     catch(const std::exception& e) {}    
 }
