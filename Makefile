@@ -24,8 +24,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 $(OUTPUT): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@ -lcurl
 
+run:
+	make clean
+	make
+	./$(OUTPUT)
+
 # Rule to clean up all object files and the final output
 clean:
 	rm -rf $(OBJDIR)/* $(OUTPUT)
-	rm -rf curl
 	rm assets/*
