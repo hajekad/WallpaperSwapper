@@ -6,6 +6,7 @@
 #include <cstring>
 #include <memory>
 
+#include "../../../config.hpp"
 #include "../../interface/bmpImage/bmpImage.hpp"
 #include "../../interface/exceptions/SystemException.cpp"
 

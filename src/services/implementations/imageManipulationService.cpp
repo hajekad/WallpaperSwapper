@@ -5,19 +5,19 @@ ImageManipulationService::ImageManipulationService(const std::string & sourcePat
     
     sourceSize = std::filesystem::file_size(sourcePath);
 
-    std::string prompt = "mogrify -format bmp assets/current.jpg";
+    std::string prompt = SHELL_JPG_TO_BMP;
 
     std::system(prompt.c_str());
     source = std::make_unique<BmpImage>("assets/current.bmp");
 }
 
 void ImageManipulationService::expandImage() {
-    if(source->height * 16 < source->width * 9) {
+    if(source->height * WIDTH < source->width * HEIGHT) {
         source->save("assets/new.bmp");
         return;
     }
 
-    int newWidth = (source->height / 9) * 16;
+    int newWidth = (source->height / HEIGHT) * WIDTH;
     int startAt =  (newWidth - source->width) / 2;
      
     BmpImage newImage(newWidth, source->height);
